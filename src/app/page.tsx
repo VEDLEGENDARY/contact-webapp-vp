@@ -144,8 +144,8 @@ const Home = () => {
     };
 
     return (
-        <div className="container mx-auto p-4">
-            <h1 className="text-3xl font-semibold mb-6 text-center">Contact List</h1>
+        <div className="container mx-auto p-8">
+            <h1 className="text-6xl font-semibold mb-6 text-center">Contact Registry</h1>
 
             <form onSubmit={handleAddContact} className="mb-6 flex justify-center items-center space-x-4 relative">
                 <input
