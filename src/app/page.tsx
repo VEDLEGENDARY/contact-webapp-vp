@@ -92,14 +92,12 @@ const Home = () => {
             // Add new contact
             const { error } = await supabase
                 .from("contacts")
-                .insert([
-                    {
-                        first_name: newContact.firstName,
-                        last_name: newContact.lastName,
-                        email: newContact.email,
-                        phone_number: newContact.phoneNumber,
-                    },
-                ]);
+                .insert([{
+                    first_name: newContact.firstName,
+                    last_name: newContact.lastName,
+                    email: newContact.email,
+                    phone_number: newContact.phoneNumber,
+                }]);
 
             if (error) {
                 console.error("Error adding contact:", error);
@@ -147,45 +145,61 @@ const Home = () => {
         <div className="container mx-auto p-8">
             <h1 className="text-6xl font-semibold mb-6 text-center">Contact Registry</h1>
 
-            <form onSubmit={handleAddContact} className="mb-6 flex justify-center items-center space-x-4 relative">
-                <input
-                    type="text"
-                    name="firstName"
-                    placeholder="First Name"
-                    value={newContact.firstName}
-                    onChange={handleInputChange}
-                    className="p-3 w-1/5 border rounded h-12"
-                />
-                <input
-                    type="text"
-                    name="lastName"
-                    placeholder="Last Name"
-                    value={newContact.lastName}
-                    onChange={handleInputChange}
-                    className="p-3 w-1/5 border rounded h-12"
-                />
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    value={newContact.email}
-                    onChange={handleInputChange}
-                    className="p-3 w-1/5 border rounded h-12"
-                />
-                <input
-                    type="text"
-                    name="phoneNumber"
-                    placeholder="Phone Number"
-                    value={newContact.phoneNumber}
-                    onChange={handleInputChange}
-                    className="p-3 w-1/5 border rounded h-12"
-                />
-                <button
-                    type="submit"
-                    className="bg-red-500 text-white p-3 rounded h-12 w-12 flex items-center justify-center"
-                >
-                    {newContact.id ? <Check size={32} /> : <Plus size={32} />}
-                </button>
+            <form
+                onSubmit={handleAddContact}
+                className="mb-6 flex flex-wrap justify-center gap-4 relative"
+            >
+                {/* Form layout for inputs */}
+                <div className="w-full">
+                    <input
+                        type="text"
+                        name="firstName"
+                        placeholder="First Name"
+                        value={newContact.firstName}
+                        onChange={handleInputChange}
+                        className="p-3 w-full border rounded h-12"
+                    />
+                </div>
+                <div className="w-full">
+                    <input
+                        type="text"
+                        name="lastName"
+                        placeholder="Last Name"
+                        value={newContact.lastName}
+                        onChange={handleInputChange}
+                        className="p-3 w-full border rounded h-12"
+                    />
+                </div>
+                <div className="w-full">
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="Email"
+                        value={newContact.email}
+                        onChange={handleInputChange}
+                        className="p-3 w-full border rounded h-12"
+                    />
+                </div>
+                <div className="w-full sm:w-[100%]">
+                    <input
+                        type="text"
+                        name="phoneNumber"
+                        placeholder="Phone Number"
+                        value={newContact.phoneNumber}
+                        onChange={handleInputChange}
+                        className="p-3 w-full border rounded h-12"
+                    />
+                </div>
+
+                <div className="w-full">
+                    <button
+                        type="submit"
+                        className="bg-red-500 text-white p-3 w-full rounded h-12 flex items-center justify-center"
+                    >
+                        {newContact.id ? <Check size={32} /> : <Plus size={32} />}
+                    </button>
+                </div>
+
                 {error && (
                     <p className="text-red-500 absolute -bottom-6 w-full text-center">
                         {error}
