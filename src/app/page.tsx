@@ -220,16 +220,16 @@ const Home = () => {
                             <p>{contact.email}</p>
                             <p>{contact.phone_number}</p>
                         </div>
-                        <div className="flex space-x-4">
+                        <div className="flex flex-wrap space-x-4 justify-start">
                             <button
                                 onClick={() => handleEditContact(contact)}
-                                className="bg-yellow-500 text-white p-2 rounded-full h-12 w-12 flex items-center justify-center"
+                                className="bg-yellow-500 text-white p-2 rounded-full h-12 w-12 flex items-center justify-center mt-[10px] sm:mt-0"
                             >
                                 <Edit size={24} />
                             </button>
                             <button
                                 onClick={() => handleDeleteContact(contact.id)}
-                                className="bg-red-500 text-white p-2 rounded-full h-12 w-12 flex items-center justify-center"
+                                className="bg-red-500 text-white p-2 rounded-full h-12 w-12 flex items-center justify-center mt-[10px] sm:mt-0"
                             >
                                 <Trash2 size={24} />
                             </button>
