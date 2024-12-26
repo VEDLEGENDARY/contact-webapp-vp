@@ -180,7 +180,7 @@ const Home = () => {
                         className="p-3 w-full border rounded h-12"
                     />
                 </div>
-                <div className="w-full sm:w-[100%]">
+                <div className="w-full">
                     <input
                         type="text"
                         name="phoneNumber"
@@ -211,7 +211,7 @@ const Home = () => {
                 {contacts.map((contact: any) => (
                     <li
                         key={contact.id}
-                        className="p-4 border-b rounded-md flex justify-between items-center shadow-md"
+                        className="p-4 border-b rounded-md flex flex-wrap justify-between items-center shadow-md"
                     >
                         <div className="flex-1">
                             <strong>
