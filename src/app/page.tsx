@@ -10,14 +10,26 @@ const contactSchema = z.object({
     firstName: z.string().min(1, "First name is required").max(50, "First name is too long"),
     lastName: z.string().min(1, "Last name is required").max(50, "Last name is too long"),
     email: z
-        .string()
-        .email("Please enter a valid email address")
-        .max(100, "Email is too long"),
+      .string()
+      .max(100, "Email is too long. Please enter an email address with a maximum of 100 characters.")
+      // First refine: Check for '@' symbol
+      .refine(value => value.includes('@'), {
+        message: "Email must contain '@'.",
+      })
+      // Second refine: Check for '.' after '@' and something following it
+      .refine(value => value.includes('.') && value.split('@')[1].includes('.'), {
+        message: "Email must contain a '.' after '@' and something following it.",
+      })
+      // Regular expression check for valid email structure
+      .refine(value => /^[^@]+@[^@]+\.[^@]+$/.test(value), {
+        message: "Please enter a valid email address.",
+      }),
     phoneNumber: z
-        .string()
-        .min(10, "Phone number should be at least 10 characters")
-        .max(15, "Phone number is too long"),
+      .string()
+      .min(10, "Phone number should be at least 10 characters")
+      .max(15, "Phone number is too long"),
 });
+
 
 const Home = () => {
     const [contacts, setContacts] = useState<any[]>([]);
